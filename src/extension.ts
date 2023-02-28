@@ -42,6 +42,12 @@ export function activate(context: vscode.ExtensionContext) {
             // Listen for errors from the Python process
             pythonProcess.stderr.on('data', (data) => {
               console.error(`Python error: ${data}`);
+              //grab the last line of the error
+              let error = data.toString().split('\n');
+              // index to the second to last line of the array error
+                let errorLine = error[error.length - 2];
+                console.log(errorLine);
+
             });
           
             // Listen for the Python process to exit
